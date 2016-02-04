@@ -1,0 +1,33 @@
+
+import * as React from 'react'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
+import { bindActionCreators } from 'redux'
+import * as axios from 'axios'
+
+// State selector
+const mapStateToProps = createSelector(
+  state => state.router,
+  (router) => {return {router}}
+)
+
+@connect(mapStateToProps)
+class {{properCase name}} extends React.Component<any, any> {
+
+  // Actions need to be a member of the clase
+  // (Note that this is typescript specific)
+  private actions
+
+  constructor() {
+    super()
+    this.actions = null
+  }
+
+  render() {
+    return (
+      <div></div>
+    )
+  }
+}
+
+export default {{properCase name}}

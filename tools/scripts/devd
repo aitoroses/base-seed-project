@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var os = require('os')
+var path = require('path')
+var exec = require('child_process').exec
+
+var arguments = process.argv.slice(2).join(' ')
+var executable = path.resolve(__dirname, `../bin/${os.platform()}/devd`)
+
+exec(`${executable} ${arguments}`, function(error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+        console.log('exec error: ' + error);
+    }
+})

@@ -1,0 +1,13 @@
+/*
+ * Action Types
+ */
+
+import { SET_{{constantCase name}} } from '../constants/{{properCase name}}.ts'
+
+/*
+ * Action Creators
+ */
+
+export function set{{properCase name}}({{camelCase name}}) {
+  return { type: SET_{{constantCase name}}, {{camelCase name}} }
+}

@@ -1,0 +1,163 @@
+# Workspace general configuration
+[workspace]
+  title = "i18n_title"
+  logoutRedirectUrl = "/LoginApp"
+
+[workspace.external]
+  stylesheets = [
+    "/CustomApp/style.css"
+  ]
+
+# Maxima project configuration
+[[project]]
+  projectId = "maxima"
+  title = "i18n_maxima"
+  dateFormat = "MM/dd/yyyy"
+  [project.layout]
+    width = 0.25
+    height = 0.25
+
+  # Sections
+  [[project.bpm.sections]]
+    id = "inbox"
+    label = "i18n_inbox"
+
+  [[project.bpm.sections]]
+    id = "views"
+    label = "i18n_views"
+
+  # My Tasks
+  [[project.bpm.views]]
+    section = "inbox"
+    key = "i18n_views_mytaskview"
+    id = "myTasksView"
+    columns = [
+      "textAttribute1",
+      "identificationKey",
+      "title",
+      "textAttribute3",
+      "creator",
+      "textAttribute2",
+      "assignedDate",
+      "assignees"
+    ]
+    # View Filter
+    [project.bpm.views.filter]
+      assignmentFilter = "MY_GROUP"
+
+      [[project.bpm.views.filter.clauses]]
+        join = "AND"
+        column = "state"
+        operator = "EQ"
+        value = "ASSIGNED"
+
+  # My Requests
+  [[project.bpm.views]]
+    section = "inbox"
+    key = "i18n_views_myRequestsView"
+    id = "myRequestsView"
+    columns = [
+      "identificationKey",
+      "title",
+      "creator",
+      "textAttribute2",
+      "assignedDate",
+      "assignees"
+    ]
+    # View Filter
+    [project.bpm.views.filter]
+      assignmentFilter = "CREATOR"
+
+      [[project.bpm.views.filter.clauses]]
+        join = "AND"
+        column = "creator"
+        operator = "EQ"
+        value = "%LOGGED_USER%"
+      [[project.bpm.views.filter.clauses]]
+        join = "AND"
+        column = "state"
+        operator = "EQ"
+        value = "ASSIGNED"
+
+  # Administrative tasks Tasks
+  [[project.bpm.views]]
+    section = "inbox"
+    key = "i18n_views_admintaskview"
+    id = "adminTasksView"
+    columns = [
+      "title",
+      "creator",
+      "assignedDate",
+      "assignees"
+    ]
+
+    # View Filter
+    [project.bpm.views.filter]
+      assignmentFilter = "MY_GROUP"
+
+      [[project.bpm.views.filter.clauses]]
+        join = "AND"
+        column = "state"
+        operator = "EQ"
+        value = "ASSIGNED"
+
+
+  # BPM task ref mappings
+  [[project.bpm.humantasks]]
+    type = "iframe"
+    taskName = "ReviewRequest"
+    taskDefinitionId = "default/UMMBusinessProcesses!1.0/ReviewRequest"
+    taskUrl = "/UMAdminApp/#/approval"
+
+  [[project.bpm.humantasks]]
+    type = "iframe"
+    taskName = "ManageException"
+    taskDefinitionId = "default/UMMBusinessProcesses!1.0/ManageException"
+    taskUrl = "/UMAdminApp/#/approval"
+
+  [[project.bpm.mappings]]
+    name = "textAttribute1"
+    i18n = "18n_mapping_np4RequestForm"
+    key = "systemMessageAttributes.textAttribute1"
+
+  [[project.bpm.mappings]]
+    name = "identificationKey"
+    i18n = "i18n_mapping_identificationKey"
+    key = "identificationKey"
+
+  # UM App
+  [[project.applications]]
+    type = "iframe"
+    appId = "um"
+    appLabelKey = "i18n_UM"
+    appUrl = "/UMAdminApp"
+
+  # Maxima Search
+  [[project.applications]]
+    type = "iframe"
+    appId = "maxima_search"
+    appLabelKey = "i18n_maxima_search"
+    appUrl = "/UMAdminApp"
+
+# Internationalization
+[workspace.i18n]
+  default = "en"
+
+[workspace.i18n.en]
+  i18n_title = "China workspace"
+  i18n_maxima = "Máxima"
+
+  # Mappings
+  i18n_mapping_np4RequestForm = "NP4 Request Form"
+  i18n_mapping_identificationKey = "Identification Key"
+
+  # Application Labels
+  i18n_UM = "UMM Admin"
+  i18n_maxima_search = "Search"
+
+  i18n_inbox = "Inbox"
+  i18n_views = "Views"
+
+  i18n_views_myRequestsView = "My Requests"
+  i18n_views_mytaskview = "My Tasks"
+  i18n_views_admintaskview = "Administrative Tasks"

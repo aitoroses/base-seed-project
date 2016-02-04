@@ -1,0 +1,15 @@
+import { SET_{{constantCase name}} } from '../constants/{{properCase name}}.ts'
+
+const initialState = {}
+
+export default function {{camelCase name}}(state = initialState, action) {
+
+  switch (action.type) {
+
+    case SET_{{constantCase name}}:
+      return action.{{camelCase name}}
+
+    default:
+      return state
+  }
+}
